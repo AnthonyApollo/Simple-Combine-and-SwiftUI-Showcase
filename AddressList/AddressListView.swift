@@ -10,15 +10,13 @@ import SwiftUI
 
 struct AddressListView: View {
     
-    @ObservedObject var presenter: AddressListPresenter = .init()
+    @ObservedObject var presenter: AddressListPresenterInputProtocol = AddressListPresenter()
     
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    ForEach(presenter.addresses) { address in
-                        AddressCell(with: address)
-                    }
+                    ForEach(presenter.addresses) { AddressCell(with: $0) }
                 }
             }
             .navigationTitle("Endereços")

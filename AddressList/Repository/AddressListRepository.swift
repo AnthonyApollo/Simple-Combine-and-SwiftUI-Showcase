@@ -32,3 +32,9 @@ class AddressListRepository {
     }
     
 }
+
+protocol AddressListRepositoryOutputProtocol: AnyObject {
+    
+    func setAddresses(with: [Address])
+    
+}

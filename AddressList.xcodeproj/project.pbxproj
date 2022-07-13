@@ -13,7 +13,6 @@
 		152495D7287E1CF500EC3AAA /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D6287E1CF500EC3AAA /* Protocols.swift */; };
 		152495DC287E39DD00EC3AAA /* AddressListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */; };
 		1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */; };
-		1598D2F4287F778F00CDA3DD /* AddressListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598D2F3287F778F00CDA3DD /* AddressListProtocols.swift */; };
 		15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EE4E3B287DB69F003688CD /* AddressListApp.swift */; };
 		15EE4E40287DB6A0003688CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EE4E3F287DB6A0003688CD /* Assets.xcassets */; };
 		15EE4E43287DB6A0003688CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EE4E42287DB6A0003688CD /* Preview Assets.xcassets */; };
@@ -28,7 +27,6 @@
 		152495D6287E1CF500EC3AAA /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListPresenter.swift; sourceTree = "<group>"; };
 		1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListRepository.swift; sourceTree = "<group>"; };
-		1598D2F3287F778F00CDA3DD /* AddressListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListProtocols.swift; sourceTree = "<group>"; };
 		15EE4E38287DB69F003688CD /* AddressList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EE4E3B287DB69F003688CD /* AddressListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListApp.swift; sourceTree = "<group>"; };
 		15EE4E3F287DB6A0003688CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,14 +72,6 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		1598D2F2287F777B00CDA3DD /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1598D2F3287F778F00CDA3DD /* AddressListProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		15EE4E2F287DB69E003688CD = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +91,6 @@
 		15EE4E3A287DB69F003688CD /* AddressList */ = {
 			isa = PBXGroup;
 			children = (
-				1598D2F2287F777B00CDA3DD /* Protocols */,
 				1598D2EF287F76BA00CDA3DD /* Repository */,
 				15EE4E49287DBF44003688CD /* Models */,
 				152495D1287E12F500EC3AAA /* Network */,
@@ -217,7 +206,6 @@
 				15EE4E4B287DBF5C003688CD /* Address.swift in Sources */,
 				152495D7287E1CF500EC3AAA /* Protocols.swift in Sources */,
 				15EE4E4E287DC076003688CD /* AddressCell.swift in Sources */,
-				1598D2F4287F778F00CDA3DD /* AddressListProtocols.swift in Sources */,
 				152495D5287E15AA00EC3AAA /* AddressRouter.swift in Sources */,
 				152495D3287E132400EC3AAA /* APIClient.swift in Sources */,
 				1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */,
