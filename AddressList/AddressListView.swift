@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddressListView: View {
     
-    @ObservedObject var presenter: AddressListPresenterInputProtocol = AddressListPresenter()
+    @ObservedObject var presenter: AddressListPresenter = .init()
     
     var body: some View {
         NavigationView {
