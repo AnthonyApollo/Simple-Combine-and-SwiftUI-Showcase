@@ -19,8 +19,6 @@ struct AddressListView: View {
                     ForEach(presenter.addresses) { address in
                         AddressCell(with: address)
                     }
-                } footer: {
-                    Text("Footer")
                 }
             }
             .navigationTitle("Endereços")

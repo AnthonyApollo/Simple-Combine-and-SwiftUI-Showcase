@@ -10,26 +10,20 @@ import Combine
 
 class AddressListPresenter: ObservableObject {
     
-    private var subscriptions = Set<AnyCancellable>()
-    private let apiClient = APIClient()
-    
     @Published var addresses: [Address] = []
     
+    private lazy var repository = AddressListRepository(output: self)
+    
     func setup() {
-        do {
-            guard let router = AddressRouter.addressList.asURLRequest() else { return }
-            let request: AnyPublisher<[Address], Never> = apiClient.requestJSON(for: router)
-            
-            request
-                .receive(on: DispatchQueue.main)
-                .sink(receiveValue: { addresses in
-                    self.addresses = addresses
-                })
-                .store(in: &subscriptions)
-        } catch {
-            print("error") // TODO: Handle errors
-        }
-        
+        repository.getAddresses()
+    }
+    
+}
+
+extension AddressListPresenter: AddressListRepositoryOutputProtocol {
+    
+    internal func setAddresses(with list: [Address]) {
+        self.addresses = list
     }
     
 }
