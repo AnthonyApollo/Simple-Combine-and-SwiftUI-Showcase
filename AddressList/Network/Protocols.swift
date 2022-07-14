@@ -22,3 +22,10 @@ enum HTTPMethod: String {
     case get = "GET"
     
 }
+
+enum RequestResult {
+    
+    case success
+    case failure
+    
+}
