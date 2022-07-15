@@ -10,7 +10,7 @@
 		152495D0287E125D00EC3AAA /* AddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495CF287E125D00EC3AAA /* AddressListView.swift */; };
 		152495D3287E132400EC3AAA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D2287E132400EC3AAA /* APIClient.swift */; };
 		152495D5287E15AA00EC3AAA /* AddressRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D4287E15AA00EC3AAA /* AddressRouter.swift */; };
-		152495D7287E1CF500EC3AAA /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D6287E1CF500EC3AAA /* Protocols.swift */; };
+		152495D7287E1CF500EC3AAA /* NetworkingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D6287E1CF500EC3AAA /* NetworkingTypes.swift */; };
 		152495DC287E39DD00EC3AAA /* AddressListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */; };
 		1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */; };
 		15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EE4E3B287DB69F003688CD /* AddressListApp.swift */; };
@@ -24,7 +24,7 @@
 		152495CF287E125D00EC3AAA /* AddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListView.swift; sourceTree = "<group>"; };
 		152495D2287E132400EC3AAA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		152495D4287E15AA00EC3AAA /* AddressRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressRouter.swift; sourceTree = "<group>"; };
-		152495D6287E1CF500EC3AAA /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		152495D6287E1CF500EC3AAA /* NetworkingTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTypes.swift; sourceTree = "<group>"; };
 		152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListPresenter.swift; sourceTree = "<group>"; };
 		1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListRepository.swift; sourceTree = "<group>"; };
 		15EE4E38287DB69F003688CD /* AddressList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,9 +57,7 @@
 		152495D1287E12F500EC3AAA /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				152495D2287E132400EC3AAA /* APIClient.swift */,
 				152495D4287E15AA00EC3AAA /* AddressRouter.swift */,
-				152495D6287E1CF500EC3AAA /* Protocols.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -70,6 +68,44 @@
 				1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		15D848912880F2D4006F109F /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				152495D6287E1CF500EC3AAA /* NetworkingTypes.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		15D848932880F48D006F109F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				15D848942880F4A1006F109F /* AddressScreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		15D848942880F4A1006F109F /* AddressScreen */ = {
+			isa = PBXGroup;
+			children = (
+				15EE4E49287DBF44003688CD /* Models */,
+				152495D1287E12F500EC3AAA /* Network */,
+				152495CE287E123000EC3AAA /* Presenter */,
+				1598D2EF287F76BA00CDA3DD /* Repository */,
+				15EE4E4C287DC063003688CD /* Views */,
+				152495CF287E125D00EC3AAA /* AddressListView.swift */,
+			);
+			path = AddressScreen;
+			sourceTree = "<group>";
+		};
+		15D848952880F4ED006F109F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				15D848912880F2D4006F109F /* Types */,
+				152495D2287E132400EC3AAA /* APIClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		15EE4E2F287DB69E003688CD = {
@@ -91,13 +127,9 @@
 		15EE4E3A287DB69F003688CD /* AddressList */ = {
 			isa = PBXGroup;
 			children = (
-				1598D2EF287F76BA00CDA3DD /* Repository */,
-				15EE4E49287DBF44003688CD /* Models */,
-				152495D1287E12F500EC3AAA /* Network */,
-				152495CE287E123000EC3AAA /* Presenter */,
-				15EE4E4C287DC063003688CD /* Views */,
+				15D848952880F4ED006F109F /* Network */,
+				15D848932880F48D006F109F /* Screens */,
 				15EE4E3B287DB69F003688CD /* AddressListApp.swift */,
-				152495CF287E125D00EC3AAA /* AddressListView.swift */,
 				15EE4E3F287DB6A0003688CD /* Assets.xcassets */,
 				15EE4E41287DB6A0003688CD /* Preview Content */,
 			);
@@ -204,7 +236,7 @@
 			files = (
 				152495D0287E125D00EC3AAA /* AddressListView.swift in Sources */,
 				15EE4E4B287DBF5C003688CD /* Address.swift in Sources */,
-				152495D7287E1CF500EC3AAA /* Protocols.swift in Sources */,
+				152495D7287E1CF500EC3AAA /* NetworkingTypes.swift in Sources */,
 				15EE4E4E287DC076003688CD /* AddressCell.swift in Sources */,
 				152495D5287E15AA00EC3AAA /* AddressRouter.swift in Sources */,
 				152495D3287E132400EC3AAA /* APIClient.swift in Sources */,

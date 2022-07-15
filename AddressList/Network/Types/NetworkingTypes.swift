@@ -1,5 +1,5 @@
 //
-//  Protocols.swift
+//  NetworkingTypes.swift
 //  AddressList
 //
 //  Created by Anthony Apollo on 12/07/22.
