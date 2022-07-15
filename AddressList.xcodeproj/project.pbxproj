@@ -83,12 +83,12 @@
 		15D848932880F48D006F109F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				15D848942880F4A1006F109F /* AddressScreen */,
+				15D848942880F4A1006F109F /* AddressListScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		15D848942880F4A1006F109F /* AddressScreen */ = {
+		15D848942880F4A1006F109F /* AddressListScreen */ = {
 			isa = PBXGroup;
 			children = (
 				15EE4E49287DBF44003688CD /* Models */,
@@ -98,7 +98,7 @@
 				15EE4E4C287DC063003688CD /* Views */,
 				152495CF287E125D00EC3AAA /* AddressListView.swift */,
 			);
-			path = AddressScreen;
+			path = AddressListScreen;
 			sourceTree = "<group>";
 		};
 		15D848952880F4ED006F109F /* Network */ = {
