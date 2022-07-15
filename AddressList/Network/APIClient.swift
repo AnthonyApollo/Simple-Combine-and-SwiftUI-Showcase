@@ -24,36 +24,50 @@ struct APIClient {
 
 extension APIClient {
     
-    func requestJSON<T: Decodable>(for urlRequest: URLRequest) -> AnyPublisher<T, Never> {
+    func requestJSON<T: Decodable>(for urlRequest: URLRequest) -> AnyPublisher<T, RequestError> {
         let response: QueuedPublisher = request(urlRequest)
         
         return response
             .map { $0.0 }
             .decode(type: T.self, decoder: decoder)
-            .catch { _ in Empty() } // TODO: Swap for .mapError
+            .mapError(mapRequestError)
             .eraseToAnyPublisher()
+    }
+    
+    private func mapRequestError(_ error: Error) -> RequestError {
+        switch error {
+        case is URLError:
+            return .url
+        case is DecodingError:
+            return .decode
+        default:
+            return .unknown
+        }
     }
     
 }
 
 extension APIClient {
     
-    func request(_ urlRequest: URLRequest) -> AnyPublisher<RequestResult, URLError> {
+    func request(_ urlRequest: URLRequest) -> AnyPublisher<RequestResult, RequestError> {
         let response: QueuedPublisher = request(urlRequest)
         
         return response
-            .map { mapURLResponse($0.1 as? HTTPURLResponse) }
+            .map { mapURLResponse($0.1) }
+            .mapError { _ in .url }
             .eraseToAnyPublisher()
     }
     
-    private func mapURLResponse(_ response: HTTPURLResponse?) -> RequestResult {
-        guard let response = response else { return .failure }
+    private func mapURLResponse(_ response: URLResponse) -> RequestResult {
+        guard let urlResponse = response as? HTTPURLResponse else {
+            return .failure(.unknown)
+        }
         
-        switch response.statusCode {
+        switch urlResponse.statusCode {
         case (200..<300):
             return .success
         default:
-            return .failure
+            return .failure(.apiError)
         }
     }
     

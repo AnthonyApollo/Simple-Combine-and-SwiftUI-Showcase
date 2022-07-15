@@ -26,6 +26,26 @@ enum HTTPMethod: String {
 enum RequestResult {
     
     case success
-    case failure
+    case failure(RequestError)
+    
+}
+
+enum RequestError: LocalizedError, Identifiable {
+    
+    var id: String { localizedDescription }
+  
+    case apiError
+    case decode
+    case unknown
+    case url
+  
+    var errorDescription: String? {
+        switch self {
+        case .apiError: return "The request returned with error status code."
+        case .decode: return "The server responded with garbage."
+        case .unknown: return "Something unexpected happened."
+        case .url: return "Given URL is unreachable."
+        }
+    }
     
 }

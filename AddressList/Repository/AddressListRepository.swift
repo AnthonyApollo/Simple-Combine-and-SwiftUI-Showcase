@@ -21,13 +21,12 @@ class AddressListRepository {
     
     internal func getAddresses() {
         guard let router = AddressRouter.addressList.asURLRequest() else { return }
-        let request: AnyPublisher<[Address], Never> = apiClient.requestJSON(for: router)
+        let request: AnyPublisher<[Address], RequestError> = apiClient.requestJSON(for: router)
         
         request
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { addresses in
-                self.output.setAddresses(with: addresses)
-            })
+            // TODO: Add error handling flow
+            .sink(receiveCompletion: { print($0) }, receiveValue: { self.output.setAddresses(with: $0) })
             .store(in: &subscriptions)
     }
     
