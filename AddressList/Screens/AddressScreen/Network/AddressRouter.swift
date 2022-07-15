@@ -12,11 +12,11 @@ enum AddressRouter: Router {
     case addressList
     
     internal var baseURL: String {
-        "http://localhost:3000/"
+        APIConstants.baseURL
     }
     
     internal var path: String {
-        "addresses"
+        APIConstants.addresses
     }
     
     internal var method: HTTPMethod {

@@ -13,6 +13,7 @@
 		152495D7287E1CF500EC3AAA /* NetworkingTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495D6287E1CF500EC3AAA /* NetworkingTypes.swift */; };
 		152495DC287E39DD00EC3AAA /* AddressListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */; };
 		1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */; };
+		15D848982880F5D2006F109F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D848972880F5D2006F109F /* APIConstants.swift */; };
 		15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EE4E3B287DB69F003688CD /* AddressListApp.swift */; };
 		15EE4E40287DB6A0003688CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EE4E3F287DB6A0003688CD /* Assets.xcassets */; };
 		15EE4E43287DB6A0003688CD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EE4E42287DB6A0003688CD /* Preview Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		152495D6287E1CF500EC3AAA /* NetworkingTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTypes.swift; sourceTree = "<group>"; };
 		152495DB287E39DD00EC3AAA /* AddressListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListPresenter.swift; sourceTree = "<group>"; };
 		1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListRepository.swift; sourceTree = "<group>"; };
+		15D848972880F5D2006F109F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		15EE4E38287DB69F003688CD /* AddressList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EE4E3B287DB69F003688CD /* AddressListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListApp.swift; sourceTree = "<group>"; };
 		15EE4E3F287DB6A0003688CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,10 +104,19 @@
 		15D848952880F4ED006F109F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				15D848962880F5BA006F109F /* Constants */,
 				15D848912880F2D4006F109F /* Types */,
 				152495D2287E132400EC3AAA /* APIClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		15D848962880F5BA006F109F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				15D848972880F5D2006F109F /* APIConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		15EE4E2F287DB69E003688CD = {
@@ -240,6 +251,7 @@
 				15EE4E4E287DC076003688CD /* AddressCell.swift in Sources */,
 				152495D5287E15AA00EC3AAA /* AddressRouter.swift in Sources */,
 				152495D3287E132400EC3AAA /* APIClient.swift in Sources */,
+				15D848982880F5D2006F109F /* APIConstants.swift in Sources */,
 				1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */,
 				15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */,
 				152495DC287E39DD00EC3AAA /* AddressListPresenter.swift in Sources */,
