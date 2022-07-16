@@ -11,25 +11,39 @@ import Combine
 class AddressListPresenter: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
+    
     let retrySubject = PassthroughSubject<Void, Never>()
+    let tapCellSubject = PassthroughSubject<Address, Never>()
     
     @Published var addresses: [Address] = []
     @Published var shouldDisplayListView: Bool = true
+    @Published var addressToEdit: Address? = nil
     
     private lazy var repository = AddressListRepository(output: self)
     
     func setup() {
         getAddresses()
-        subscribeRetryButton()
+        subscribe()
     }
     
     private func getAddresses() {
         repository.getAddresses()
     }
     
+    private func subscribe() {
+        subscribeRetryButton()
+        subscribeCellTap()
+    }
+    
     private func subscribeRetryButton() {
         retrySubject
             .sink { self.getAddresses() }
+            .store(in: &subscriptions)
+    }
+    
+    private func subscribeCellTap() {
+        tapCellSubject
+            .sink { self.addressToEdit = $0 }
             .store(in: &subscriptions)
     }
     

@@ -17,7 +17,9 @@ struct AddressListView: View {
             if presenter.shouldDisplayListView {
                 List {
                     Section {
-                        ForEach(presenter.addresses) { AddressCell(with: $0) }
+                        ForEach(presenter.addresses) {
+                            AddressCell(with: $0, onTapSubject: presenter.tapCellSubject)
+                        }
                     }
                 }
                 .navigationTitle("Endereços")
@@ -27,6 +29,9 @@ struct AddressListView: View {
             }
         }
         .onAppear(perform: presenter.setup)
+        .sheet(item: $presenter.addressToEdit) {
+            EditAddressSheet(address: $0)
+        }
     }
     
 }

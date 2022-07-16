@@ -5,14 +5,17 @@
 //  Created by Anthony Apollo on 12/07/22.
 //
 
+import Combine
 import SwiftUI
 
 struct AddressCell: View {
     
-    let address: Address
+    private let address: Address
+    var onTapSubject: PassthroughSubject<Address, Never>?
     
-    init(with address: Address) {
+    init(with address: Address, onTapSubject: PassthroughSubject<Address, Never>? = nil) {
         self.address = address
+        self.onTapSubject = onTapSubject
     }
     
     var body: some View {
@@ -23,6 +26,9 @@ struct AddressCell: View {
             Text("\(address.city) - \(address.state)")
         }
         .padding()
+        .onTapGesture {
+            onTapSubject?.send(address)
+        }
     }
     
 }

@@ -10,6 +10,6 @@ import Foundation
 struct APIConstants {
     
     static let addresses = "/addresses"
-    static let baseURL = "http://localhost:3000"
+    static let baseURL = "http://192.168.0.4:3000"
     
 }
