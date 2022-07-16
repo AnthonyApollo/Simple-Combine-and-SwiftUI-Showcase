@@ -18,9 +18,9 @@ struct AddressCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(address.title).bold()
-            Text(address.street)
-            Text(address.number)
-            Text(address.district)
+            Text("\(address.street), \(address.number) - \(address.district)")
+            Text(address.zipCode)
+            Text("\(address.city) - \(address.state)")
         }
         .padding()
     }
