@@ -14,13 +14,17 @@ struct AddressListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    ForEach(presenter.addresses) { AddressCell(with: $0) }
+            if presenter.shouldDisplayListView {
+                List {
+                    Section {
+                        ForEach(presenter.addresses) { AddressCell(with: $0) }
+                    }
                 }
+                .navigationTitle("Endereços")
+                .navigationBarTitleDisplayMode(.inline)
+            } else {
+                EmptyAddressListView(retrySubject: presenter.retrySubject)
             }
-            .navigationTitle("Endereços")
-            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear(perform: presenter.setup)
     }
