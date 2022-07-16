@@ -19,14 +19,28 @@ class AddressListRepository {
         self.output = output
     }
     
-    internal func getAddresses() {
+    func getAddresses() {
         guard let router = AddressRouter.addressList.asURLRequest() else { return }
         let request: AnyPublisher<[Address], RequestError> = apiClient.requestJSON(for: router)
         
         request
             .receive(on: DispatchQueue.main)
             // TODO: Add error handling flow
-            .sink(receiveCompletion: { print($0) }, receiveValue: { self.output.setAddresses(with: $0) })
+            .sink(receiveCompletion: { print($0) }, receiveValue: { self.output.getAddressesSuccess(with: $0) })
+            .store(in: &subscriptions)
+    }
+    
+    func editAddress(_ address: Address) {
+        guard let router = AddressRouter.edit(address).asURLRequest() else { return }
+        let request = apiClient.request(router)
+        
+        request
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    self.output.editAddressError(error)
+                }
+            }, receiveValue: { self.output.editAddressResult($0) })
             .store(in: &subscriptions)
     }
     
@@ -34,6 +48,8 @@ class AddressListRepository {
 
 protocol AddressListRepositoryOutputProtocol: AnyObject {
     
-    func setAddresses(with: [Address])
+    func getAddressesSuccess(with: [Address])
+    func editAddressResult(_: RequestResult)
+    func editAddressError(_: RequestError)
     
 }

@@ -9,7 +9,14 @@ import Foundation
 
 struct APIConstants {
     
-    static let addresses = "/addresses"
+    // MARK: - Terms
+    static let address = "address"
+    static let all = "all"
+    static let edit = "edit"
+    
+    // MARK: - Routes
+    static let addressList = "/\(address)/\(all)"
+    static let editAddress = "/\(address)/\(edit)"
     static let baseURL = "http://192.168.0.4:3000"
     
 }

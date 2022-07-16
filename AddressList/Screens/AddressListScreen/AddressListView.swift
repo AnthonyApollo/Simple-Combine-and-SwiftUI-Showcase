@@ -30,8 +30,9 @@ struct AddressListView: View {
         }
         .onAppear(perform: presenter.setup)
         .sheet(item: $presenter.addressToEdit) {
-            EditAddressSheet(address: $0)
+            EditAddressSheet(with: $0, editAddressSubject: presenter.editAddressSubject)
         }
+        .environmentObject(presenter)
     }
     
 }

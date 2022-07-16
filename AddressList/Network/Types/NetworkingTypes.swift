@@ -20,6 +20,7 @@ protocol Router: CaseIterable {
 enum HTTPMethod: String {
     
     case get = "GET"
+    case put = "PUT"
     
 }
 
@@ -48,4 +49,13 @@ enum RequestError: LocalizedError, Identifiable {
         }
     }
     
+}
+
+extension Encodable {
+    
+    internal var dictionary: [String: Any] {
+        guard let data = try? JSONEncoder().encode(self) else { return [:] }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] } ?? [:]
+    }
+
 }

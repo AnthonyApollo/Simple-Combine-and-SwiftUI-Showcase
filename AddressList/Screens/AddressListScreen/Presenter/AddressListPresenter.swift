@@ -14,10 +14,12 @@ class AddressListPresenter: ObservableObject {
     
     let retrySubject = PassthroughSubject<Void, Never>()
     let tapCellSubject = PassthroughSubject<Address, Never>()
+    let editAddressSubject = PassthroughSubject<Void, Never>()
     
     @Published var addresses: [Address] = []
     @Published var shouldDisplayListView: Bool = true
     @Published var addressToEdit: Address? = nil
+    @Published var editAddressMessage: AlertMessage? = nil
     
     private lazy var repository = AddressListRepository(output: self)
     
@@ -33,6 +35,7 @@ class AddressListPresenter: ObservableObject {
     private func subscribe() {
         subscribeRetryButton()
         subscribeCellTap()
+        subscribeEditAddress()
     }
     
     private func subscribeRetryButton() {
@@ -47,11 +50,23 @@ class AddressListPresenter: ObservableObject {
             .store(in: &subscriptions)
     }
     
+    private func subscribeEditAddress() {
+        editAddressSubject
+            .sink { self.editAddress() }
+            .store(in: &subscriptions)
+    }
+    
+    private func editAddress() {
+        guard let addressToEdit = addressToEdit else { return }
+        
+        repository.editAddress(addressToEdit)
+    }
+    
 }
 
 extension AddressListPresenter: AddressListRepositoryOutputProtocol {
     
-    internal func setAddresses(with list: [Address]) {
+    func getAddressesSuccess(with list: [Address]) {
         if list.isEmpty {
             shouldDisplayListView = false
         } else {
@@ -59,5 +74,27 @@ extension AddressListPresenter: AddressListRepositoryOutputProtocol {
             self.addresses = list
         }
     }
+    
+    func editAddressResult(_ result: RequestResult) {
+        switch result {
+        case .success:
+            self.editAddressMessage = AlertMessage(id: 1, title: "( ͡° ͜ʖ ͡°)", description: "Endereço salvo com sucesso!")
+        case .failure(let requestError):
+            editAddressError(requestError)
+        }
+    }
+    
+    func editAddressError(_ error: RequestError) {
+        self.editAddressMessage = AlertMessage(id: 0, title: "=X", description: error.localizedDescription)
+    }
+    
+}
+
+struct AlertMessage: Identifiable {
+    
+    var id: Int
+    
+    let title: String
+    let description: String
     
 }
