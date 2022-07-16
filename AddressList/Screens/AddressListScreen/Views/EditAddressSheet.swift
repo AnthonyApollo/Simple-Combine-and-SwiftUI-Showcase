@@ -15,13 +15,11 @@ struct EditAddressSheet: View {
     var body: some View {
         VStack(spacing: 50) {
             Text("ID: \(address.id)")
-            VStack {
-                Text("Se esse APP fosse real, você poderia editar o endereço aqui.")
-                Text(";)")
-            }
+            Text("Se esse APP fosse real, você poderia editar o endereço aqui.")
             Button("E salvar com esse botão.") {
                 print("teste")
             }
+            Text(";)")
         }
     }
     
