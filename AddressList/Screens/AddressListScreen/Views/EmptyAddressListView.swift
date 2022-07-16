@@ -30,8 +30,9 @@ struct EmptyAddressListView: View {
     
 }
 
-//struct EmptyAddressListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EmptyAddressListView()
-//    }
-//}
+struct EmptyAddressListView_Previews: PreviewProvider {
+    static var previews: some View {
+        let retrySubject = PassthroughSubject<Void, Never>()
+        EmptyAddressListView(retrySubject: retrySubject)
+    }
+}
