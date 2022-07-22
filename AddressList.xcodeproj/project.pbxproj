@@ -15,6 +15,7 @@
 		1529B2C32882280000F0B428 /* EmptyAddressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1529B2C22882280000F0B428 /* EmptyAddressListView.swift */; };
 		1529B2C528824F4600F0B428 /* EditAddressSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1529B2C428824F4600F0B428 /* EditAddressSheet.swift */; };
 		1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */; };
+		15CD1F3B288B5C10005C56F4 /* AlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CD1F3A288B5C10005C56F4 /* AlertMessage.swift */; };
 		15D848982880F5D2006F109F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D848972880F5D2006F109F /* APIConstants.swift */; };
 		15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EE4E3B287DB69F003688CD /* AddressListApp.swift */; };
 		15EE4E40287DB6A0003688CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15EE4E3F287DB6A0003688CD /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		1529B2C22882280000F0B428 /* EmptyAddressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyAddressListView.swift; sourceTree = "<group>"; };
 		1529B2C428824F4600F0B428 /* EditAddressSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressSheet.swift; sourceTree = "<group>"; };
 		1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListRepository.swift; sourceTree = "<group>"; };
+		15CD1F3A288B5C10005C56F4 /* AlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessage.swift; sourceTree = "<group>"; };
 		15D848972880F5D2006F109F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		15EE4E38287DB69F003688CD /* AddressList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15EE4E3B287DB69F003688CD /* AddressListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressListApp.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 				1598D2F0287F76CE00CDA3DD /* AddressListRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		15CD1F39288B5BEE005C56F4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				15CD1F3A288B5C10005C56F4 /* AlertMessage.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		15D848912880F2D4006F109F /* Types */ = {
@@ -144,6 +154,7 @@
 			children = (
 				15D848952880F4ED006F109F /* Network */,
 				15D848932880F48D006F109F /* Screens */,
+				15CD1F39288B5BEE005C56F4 /* Shared */,
 				15EE4E3B287DB69F003688CD /* AddressListApp.swift */,
 				15EE4E3F287DB6A0003688CD /* Assets.xcassets */,
 				15EE4E41287DB6A0003688CD /* Preview Content */,
@@ -263,6 +274,7 @@
 				1598D2F1287F76CE00CDA3DD /* AddressListRepository.swift in Sources */,
 				15EE4E3C287DB69F003688CD /* AddressListApp.swift in Sources */,
 				152495DC287E39DD00EC3AAA /* AddressListPresenter.swift in Sources */,
+				15CD1F3B288B5C10005C56F4 /* AlertMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

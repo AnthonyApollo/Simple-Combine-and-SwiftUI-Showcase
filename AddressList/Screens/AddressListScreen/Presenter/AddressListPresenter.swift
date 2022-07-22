@@ -78,23 +78,14 @@ extension AddressListPresenter: AddressListRepositoryOutputProtocol {
     func editAddressResult(_ result: RequestResult) {
         switch result {
         case .success:
-            self.editAddressMessage = AlertMessage(id: 1, title: "( ͡° ͜ʖ ͡°)", description: "Endereço salvo com sucesso!")
+            self.editAddressMessage = .success("Endereço salvo com sucesso!")
         case .failure(let requestError):
             editAddressError(requestError)
         }
     }
     
     func editAddressError(_ error: RequestError) {
-        self.editAddressMessage = AlertMessage(id: 0, title: "t(>.<t)", description: error.localizedDescription)
+        self.editAddressMessage = .failure(error.localizedDescription)
     }
-    
-}
-
-struct AlertMessage: Identifiable {
-    
-    var id: Int
-    
-    let title: String
-    let description: String
     
 }
