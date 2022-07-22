@@ -11,6 +11,7 @@ import SwiftUI
 struct EditAddressSheet: View {
     
     @EnvironmentObject var presenter: AddressListPresenter
+    @Environment(\.presentationMode) var presentationMode
     
     var address: Address
     
@@ -31,8 +32,20 @@ struct EditAddressSheet: View {
             Alert(
                 title: Text(message.title),
                 message: Text(message.description),
-                dismissButton: .cancel()
+                dismissButton: .default(
+                    Text("OK"),
+                    action: { dismissIfNeeded(for: message.id) }
+                )
             )
+        }
+    }
+    
+    private func dismissIfNeeded(for messageID: Int) {
+        switch messageID {
+        case 1:
+            presentationMode.wrappedValue.dismiss()
+        default:
+            break
         }
     }
     
