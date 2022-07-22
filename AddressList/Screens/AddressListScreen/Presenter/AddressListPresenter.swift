@@ -11,10 +11,7 @@ import Combine
 class AddressListPresenter: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    let retrySubject = PassthroughSubject<Void, Never>()
-    let tapCellSubject = PassthroughSubject<Address, Never>()
-    let editAddressSubject = PassthroughSubject<Void, Never>()
+    let actionSubject = PassthroughSubject<Action, Never>()
     
     @Published var addresses: [Address] = []
     @Published var shouldDisplayListView: Bool = true
@@ -25,35 +22,28 @@ class AddressListPresenter: ObservableObject {
     
     func setup() {
         getAddresses()
-        subscribe()
+        subscribeActions()
     }
     
     private func getAddresses() {
         repository.getAddresses()
     }
     
-    private func subscribe() {
-        subscribeRetryButton()
-        subscribeCellTap()
-        subscribeEditAddress()
-    }
-    
-    private func subscribeRetryButton() {
-        retrySubject
-            .sink { self.getAddresses() }
+    private func subscribeActions() {
+        actionSubject
+            .sink { self.receive(action: $0) }
             .store(in: &subscriptions)
     }
     
-    private func subscribeCellTap() {
-        tapCellSubject
-            .sink { self.addressToEdit = $0 }
-            .store(in: &subscriptions)
-    }
-    
-    private func subscribeEditAddress() {
-        editAddressSubject
-            .sink { self.editAddress() }
-            .store(in: &subscriptions)
+    private func receive(action: Action) {
+        switch action {
+        case .editAddress:
+            self.editAddress()
+        case .getListRetry:
+            self.getAddresses()
+        case .tapAddressCell(let address):
+            self.addressToEdit = address
+        }
     }
     
     private func editAddress() {
@@ -86,6 +76,18 @@ extension AddressListPresenter: AddressListRepositoryOutputProtocol {
     
     func editAddressError(_ error: RequestError) {
         self.editAddressMessage = .failure(error.localizedDescription)
+    }
+    
+}
+
+extension AddressListPresenter {
+    
+    enum Action {
+        
+        case editAddress
+        case getListRetry
+        case tapAddressCell(Address)
+        
     }
     
 }

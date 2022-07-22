@@ -27,7 +27,7 @@ struct AddressCell: View {
         }
         .padding()
         .onTapGesture {
-            presenter.tapCellSubject.send(address)
+            presenter.actionSubject.send(.tapAddressCell(address))
         }
     }
     

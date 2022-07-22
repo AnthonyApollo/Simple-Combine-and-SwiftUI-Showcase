@@ -24,7 +24,7 @@ struct EditAddressSheet: View {
             Text("ID: \(address.id)")
             Text("Se esse APP fosse real, você poderia editar o endereço aqui.")
             Button("E salvar com esse botão.") {
-                presenter.editAddressSubject.send()
+                presenter.actionSubject.send(.editAddress)
             }
             Text(";)")
         }

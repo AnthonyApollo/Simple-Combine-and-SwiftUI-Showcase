@@ -19,7 +19,7 @@ struct EmptyAddressListView: View {
                 Text("=(")
             }
             Button("Buscar novamente") {
-                presenter.retrySubject.send()
+                presenter.actionSubject.send(.getListRetry)
             }
         }
     }
