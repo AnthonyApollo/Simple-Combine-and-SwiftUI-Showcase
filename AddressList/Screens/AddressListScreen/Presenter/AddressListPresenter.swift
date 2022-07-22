@@ -85,7 +85,7 @@ extension AddressListPresenter: AddressListRepositoryOutputProtocol {
     }
     
     func editAddressError(_ error: RequestError) {
-        self.editAddressMessage = AlertMessage(id: 0, title: "=X", description: error.localizedDescription)
+        self.editAddressMessage = AlertMessage(id: 0, title: "(ง︡'-'︠)ง", description: error.localizedDescription)
     }
     
 }

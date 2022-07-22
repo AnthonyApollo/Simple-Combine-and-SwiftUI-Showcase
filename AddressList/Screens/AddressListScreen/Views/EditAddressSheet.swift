@@ -10,15 +10,12 @@ import SwiftUI
 
 struct EditAddressSheet: View {
     
-    var address: Address
-    
     @EnvironmentObject var presenter: AddressListPresenter
     
-    let editAddressSubject: PassthroughSubject<Void, Never>?
+    var address: Address
     
-    init(with address: Address, editAddressSubject: PassthroughSubject<Void, Never>? = nil) {
+    init(with address: Address) {
         self.address = address
-        self.editAddressSubject = editAddressSubject
     }
     
     var body: some View {
@@ -26,7 +23,7 @@ struct EditAddressSheet: View {
             Text("ID: \(address.id)")
             Text("Se esse APP fosse real, você poderia editar o endereço aqui.")
             Button("E salvar com esse botão.") {
-                editAddressSubject?.send()
+                presenter.editAddressSubject.send()
             }
             Text(";)")
         }

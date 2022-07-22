@@ -17,6 +17,6 @@ struct APIConstants {
     // MARK: - Routes
     static let addressList = "/\(address)/\(all)"
     static let editAddress = "/\(address)/\(edit)"
-    static let baseURL = "http://192.168.0.4:3000"
+    static let baseURL = "http://localhost:3000"
     
 }

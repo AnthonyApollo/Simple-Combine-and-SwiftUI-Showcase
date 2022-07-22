@@ -18,19 +18,19 @@ struct AddressListView: View {
                 List {
                     Section {
                         ForEach(presenter.addresses) {
-                            AddressCell(with: $0, onTapSubject: presenter.tapCellSubject)
+                            AddressCell(with: $0)
                         }
                     }
                 }
                 .navigationTitle("Endereços")
                 .navigationBarTitleDisplayMode(.inline)
             } else {
-                EmptyAddressListView(retrySubject: presenter.retrySubject)
+                EmptyAddressListView()
             }
         }
         .onAppear(perform: presenter.setup)
         .sheet(item: $presenter.addressToEdit) {
-            EditAddressSheet(with: $0, editAddressSubject: presenter.editAddressSubject)
+            EditAddressSheet(with: $0)
         }
         .environmentObject(presenter)
     }

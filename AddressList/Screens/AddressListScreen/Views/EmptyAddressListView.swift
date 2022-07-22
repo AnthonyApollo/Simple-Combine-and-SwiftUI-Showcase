@@ -10,11 +10,7 @@ import Combine
 
 struct EmptyAddressListView: View {
     
-    var retrySubject: PassthroughSubject<Void, Never>
-    
-    init(retrySubject: PassthroughSubject<Void, Never>) {
-        self.retrySubject = retrySubject
-    }
+    @EnvironmentObject var presenter: AddressListPresenter
     
     var body: some View {
         VStack(spacing: 50) {
@@ -23,7 +19,7 @@ struct EmptyAddressListView: View {
                 Text("=(")
             }
             Button("Buscar novamente") {
-                retrySubject.send()
+                presenter.retrySubject.send()
             }
         }
     }
@@ -32,7 +28,6 @@ struct EmptyAddressListView: View {
 
 struct EmptyAddressListView_Previews: PreviewProvider {
     static var previews: some View {
-        let retrySubject = PassthroughSubject<Void, Never>()
-        EmptyAddressListView(retrySubject: retrySubject)
+        EmptyAddressListView()
     }
 }

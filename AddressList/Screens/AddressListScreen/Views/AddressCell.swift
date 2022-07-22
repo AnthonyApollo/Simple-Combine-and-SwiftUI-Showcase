@@ -10,12 +10,12 @@ import SwiftUI
 
 struct AddressCell: View {
     
-    private let address: Address
-    var onTapSubject: PassthroughSubject<Address, Never>?
+    @EnvironmentObject var presenter: AddressListPresenter
     
-    init(with address: Address, onTapSubject: PassthroughSubject<Address, Never>? = nil) {
+    private let address: Address
+    
+    init(with address: Address) {
         self.address = address
-        self.onTapSubject = onTapSubject
     }
     
     var body: some View {
@@ -27,7 +27,7 @@ struct AddressCell: View {
         }
         .padding()
         .onTapGesture {
-            onTapSubject?.send(address)
+            presenter.tapCellSubject.send(address)
         }
     }
     
