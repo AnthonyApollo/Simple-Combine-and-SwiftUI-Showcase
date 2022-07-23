@@ -16,7 +16,7 @@ class AddressListPresenter: ObservableObject {
     @Published var addresses: [Address] = []
     @Published var shouldDisplayListView: Bool = true
     @Published var addressToEdit: Address? = nil
-    @Published var editAddressMessage: AlertMessage? = nil
+    @Published var alertMessage: AlertMessage? = nil
     
     private lazy var repository = AddressListRepository(output: self)
     
@@ -68,14 +68,18 @@ extension AddressListPresenter: AddressListRepositoryOutputProtocol {
     func editAddressResult(_ result: RequestResult) {
         switch result {
         case .success:
-            self.editAddressMessage = .success("Endereço salvo com sucesso!")
+            self.alertMessage = .success("Endereço salvo com sucesso!")
         case .failure(let requestError):
-            editAddressError(requestError)
+            display(error: requestError)
         }
     }
     
-    func editAddressError(_ error: RequestError) {
-        self.editAddressMessage = .failure(error.localizedDescription)
+    func display(error: RequestError) {
+        self.alertMessage = .failure(error.localizedDescription)
+        
+        if addresses.isEmpty {
+            shouldDisplayListView = false
+        }
     }
     
 }

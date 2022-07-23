@@ -28,7 +28,7 @@ struct EditAddressSheet: View {
             }
             Text(";)")
         }
-        .alert(item: $presenter.editAddressMessage) { message in
+        .alert(item: $presenter.alertMessage) { message in
             Alert(
                 title: Text(message.title),
                 message: Text(message.description),

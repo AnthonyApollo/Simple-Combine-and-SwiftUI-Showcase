@@ -32,6 +32,13 @@ struct AddressListView: View {
         .sheet(item: $presenter.addressToEdit) {
             EditAddressSheet(with: $0)
         }
+        .alert(item: $presenter.alertMessage) { message in
+            Alert(
+                title: Text(message.title),
+                message: Text(message.description),
+                dismissButton: .cancel()
+            )
+        }
         .environmentObject(presenter)
     }
     

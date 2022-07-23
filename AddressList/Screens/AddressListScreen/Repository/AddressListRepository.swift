@@ -25,8 +25,10 @@ class AddressListRepository {
         
         request
             .receive(on: DispatchQueue.main)
-            // TODO: Add error handling flow
-            .sink(receiveCompletion: { print($0) }, receiveValue: { self.output.getAddressesSuccess(with: $0) })
+            .sink(
+                receiveCompletion: { self.receive(completion: $0) },
+                receiveValue: { self.output.getAddressesSuccess(with: $0) }
+            )
             .store(in: &subscriptions)
     }
     
@@ -36,12 +38,17 @@ class AddressListRepository {
         
         request
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    self.output.editAddressError(error)
-                }
-            }, receiveValue: { self.output.editAddressResult($0) })
+            .sink(
+                receiveCompletion: { self.receive(completion: $0) },
+                receiveValue: { self.output.editAddressResult($0) }
+            )
             .store(in: &subscriptions)
+    }
+    
+    private func receive(completion: Subscribers.Completion<RequestError>) {
+        if case .failure(let error) = completion {
+            self.output.display(error: error)
+        }
     }
     
 }
@@ -50,6 +57,6 @@ protocol AddressListRepositoryOutputProtocol: AnyObject {
     
     func getAddressesSuccess(with: [Address])
     func editAddressResult(_: RequestResult)
-    func editAddressError(_: RequestError)
+    func display(error: RequestError)
     
 }

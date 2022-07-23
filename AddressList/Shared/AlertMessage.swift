@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum AlertMessage: Identifiable {
+public enum AlertMessage: Identifiable {
     
     case success(String)
     case failure(String)
     
-    var id: Int {
+    public var id: Int {
         switch self {
         case .success:
             return 1
