@@ -42,10 +42,10 @@ enum RequestError: LocalizedError, Identifiable {
   
     var errorDescription: String? {
         switch self {
-        case .apiError: return "The request returned with error status code."
-        case .decode: return "The server responded with garbage."
-        case .unknown: return "Something unexpected happened."
-        case .url: return "Given URL is unreachable."
+        case .apiError: return "A requisição retornou com código de erro."
+        case .decode: return "Não é possível decodificar a resposta do servidor."
+        case .unknown: return "Algo inesperado aconteceu."
+        case .url: return "A URL informada não é acessível."
         }
     }
     
