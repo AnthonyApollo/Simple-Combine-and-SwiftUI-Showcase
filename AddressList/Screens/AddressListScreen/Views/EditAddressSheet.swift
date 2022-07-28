@@ -34,16 +34,14 @@ struct EditAddressSheet: View {
                 message: Text(message.description),
                 dismissButton: .default(
                     Text("OK"),
-                    action: { dismissIfNeeded(for: message) }
+                    action: { onDismiss(message: message) }
                 )
             )
         }
     }
     
-    private func dismissIfNeeded(for message: AlertMessage) {        
-        if case .success = message {
-            presentationMode.wrappedValue.dismiss()
-        }
+    private func onDismiss(message: AlertMessage) {
+        presenter.actionSubject.send(.dismissedAddressEditAlert(message))
     }
     
 }

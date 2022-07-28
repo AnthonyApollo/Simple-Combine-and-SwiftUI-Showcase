@@ -39,6 +39,8 @@ class AddressListPresenter: ObservableObject {
         switch action {
         case .editAddress:
             self.editAddress()
+        case .dismissedAddressEditAlert(let message):
+            dismissEditAddressSheetIfNeeded(for: message)
         case .getListRetry:
             self.getAddresses()
         case .tapAddressCell(let address):
@@ -50,6 +52,13 @@ class AddressListPresenter: ObservableObject {
         guard let addressToEdit = addressToEdit else { return }
         
         repository.editAddress(addressToEdit)
+    }
+    
+    private func dismissEditAddressSheetIfNeeded(for message: AlertMessage) {
+        guard case .success = message else { return }
+        
+        alertMessage = nil
+        addressToEdit = nil
     }
     
 }
@@ -89,6 +98,7 @@ extension AddressListPresenter {
     enum Action {
         
         case editAddress
+        case dismissedAddressEditAlert(AlertMessage)
         case getListRetry
         case tapAddressCell(Address)
         
