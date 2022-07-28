@@ -11,7 +11,6 @@ import SwiftUI
 struct EditAddressSheet: View {
     
     @EnvironmentObject var presenter: AddressListPresenter
-    @Environment(\.presentationMode) var presentationMode
     
     var address: Address
     
