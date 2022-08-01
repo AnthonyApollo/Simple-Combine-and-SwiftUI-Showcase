@@ -9,8 +9,6 @@ import Foundation
 
 enum AddressRouter: Router {
     
-    static var allCases: [AddressRouter] = [.addressList, .edit(nil)]
-    
     case addressList
     case edit(Address?)
     

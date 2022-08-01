@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Router: CaseIterable {
+protocol Router {
     
     var baseURL: String { get }
     var path: String { get }
