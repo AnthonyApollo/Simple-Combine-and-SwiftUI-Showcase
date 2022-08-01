@@ -24,11 +24,37 @@ struct APIClient {
 
 extension APIClient {
     
+    func request(_ urlRequest: URLRequest) -> AnyPublisher<RequestResult, RequestError> {
+        let response: QueuedPublisher = request(urlRequest)
+        
+        return response
+            .map { map($0.response) }
+            .mapError { _ in .url }
+            .eraseToAnyPublisher()
+    }
+    
+    private func map(_ urlResponse: URLResponse) -> RequestResult {
+        guard let urlResponse = urlResponse as? HTTPURLResponse else {
+            return .failure(.unknown)
+        }
+        
+        switch urlResponse.statusCode {
+        case (200..<300):
+            return .success
+        default:
+            return .failure(.apiError)
+        }
+    }
+    
+}
+
+extension APIClient {
+    
     func requestJSON<T: Decodable>(for urlRequest: URLRequest) -> AnyPublisher<T, RequestError> {
         let response: QueuedPublisher = request(urlRequest)
         
         return response
-            .map { $0.0 }
+            .map { $0.data }
             .decode(type: T.self, decoder: decoder)
             .mapError(mapRequestError)
             .eraseToAnyPublisher()
@@ -42,32 +68,6 @@ extension APIClient {
             return .decode
         default:
             return .unknown
-        }
-    }
-    
-}
-
-extension APIClient {
-    
-    func request(_ urlRequest: URLRequest) -> AnyPublisher<RequestResult, RequestError> {
-        let response: QueuedPublisher = request(urlRequest)
-        
-        return response
-            .map { mapURLResponse($0.1) }
-            .mapError { _ in .url }
-            .eraseToAnyPublisher()
-    }
-    
-    private func mapURLResponse(_ response: URLResponse) -> RequestResult {
-        guard let urlResponse = response as? HTTPURLResponse else {
-            return .failure(.unknown)
-        }
-        
-        switch urlResponse.statusCode {
-        case (200..<300):
-            return .success
-        default:
-            return .failure(.apiError)
         }
     }
     

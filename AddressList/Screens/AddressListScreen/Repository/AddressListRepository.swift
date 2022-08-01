@@ -10,6 +10,8 @@ import Combine
 
 class AddressListRepository {
     
+    private typealias Completion<T: Error> = Subscribers.Completion<T>
+    
     private var subscriptions = Set<AnyCancellable>()
     private let apiClient = APIClient()
     
@@ -20,10 +22,11 @@ class AddressListRepository {
     }
     
     func getAddresses() {
-        guard let router = AddressRouter.addressList.asURLRequest() else { return }
-        let request: AnyPublisher<[Address], RequestError> = apiClient.requestJSON(for: router)
+        let router: AddressRouter = .addressList
+        guard let urlRequest = router.asURLRequest() else { return }
+        let response: AnyPublisher<[Address], RequestError> = apiClient.requestJSON(for: urlRequest)
         
-        request
+        response
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { self.receive(completion: $0) },
@@ -33,10 +36,11 @@ class AddressListRepository {
     }
     
     func editAddress(_ address: Address) {
-        guard let router = AddressRouter.edit(address).asURLRequest() else { return }
-        let request = apiClient.request(router)
+        let router: AddressRouter = .addressList
+        guard let urlRequest = AddressRouter.edit(address).asURLRequest() else { return }
+        let response = apiClient.request(urlRequest)
         
-        request
+        response
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { self.receive(completion: $0) },
@@ -45,7 +49,7 @@ class AddressListRepository {
             .store(in: &subscriptions)
     }
     
-    private func receive(completion: Subscribers.Completion<RequestError>) {
+    private func receive(completion: Completion<RequestError>) {
         if case .failure(let error) = completion {
             self.output.display(error: error)
         }

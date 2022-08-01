@@ -16,10 +16,8 @@ struct AddressListView: View {
         NavigationView {
             if presenter.shouldDisplayListView {
                 List {
-                    Section {
-                        ForEach(presenter.addresses) {
-                            AddressCell(with: $0)
-                        }
+                    ForEach(presenter.addresses) {
+                        AddressCell(with: $0)
                     }
                 }
                 .navigationTitle("Endereços")
