@@ -36,8 +36,8 @@ class AddressListRepository {
     }
     
     func editAddress(_ address: Address) {
-        let router: AddressRouter = .addressList
-        guard let urlRequest = AddressRouter.edit(address).asURLRequest() else { return }
+        let router: AddressRouter = .edit(address)
+        guard let urlRequest = router.asURLRequest() else { return }
         let response = apiClient.request(urlRequest)
         
         response
